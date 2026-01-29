@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  app:
+    build: .
+    image: tiprun-marketing-agents:latest
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis
+    command: ["node", "dist/index.js"]
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+volumes:
+  redis-data:
