@@ -1,0 +1,9 @@
+name: Minimal Check
+on:
+  workflow_dispatch:
+jobs:
+  sanity:
+
+runs-on: ubuntu-latest
+steps:
+  - run: echo "GitHub Actions is working"
